@@ -14,23 +14,27 @@ import java.util.Set;
 public class Test {
 
 	public static void main(String[] args) {
-		List<Integer> list = new ArrayList();
-		list.add(1);list.add(5);list.add(1);list.add(3);list.add(3);list.add(2);
-		String str = " ymm yamani Mohammed med code";
+		List<Integer> ListOfDuplicateNumbers = new ArrayList();
+		ListOfDuplicateNumbers.add(1);
+		ListOfDuplicateNumbers.add(5);
+		ListOfDuplicateNumbers.add(1);
+		ListOfDuplicateNumbers.add(3);
+		ListOfDuplicateNumbers.add(3);
+		ListOfDuplicateNumbers.add(2);
+		
+		String message = " ymm yamani Mohammed med code";
 		// Test compress
-		System.out.println("compresse msg : " +str);
-		System.out.println(compress(str));
+		System.out.println("compresse msg : " +message);
+		System.out.println(compress(message));
 		
 		// Test count non unique 
 		System.out.println("Count non unique : ");
-		
-		 System.out.println(list);
-		 System.out.println(countNonUniuque(list));
+		System.out.println(ListOfDuplicateNumbers);
+		System.out.println(countNonUniuque(ListOfDuplicateNumbers));
 		 
 		 // Test count pair 
 		System.out.println("Count pair : ");
-		
-		System.out.println(countPair(list, 2));
+		System.out.println(countPair(ListOfDuplicateNumbers, 2));
 
 	}
 	
@@ -39,30 +43,30 @@ public class Test {
 	 * @param input contains a string
 	 * @return string msg as a compressed message
 	 */
-	public static String compress(String str) {
-		 int length = str.length();
+	public static String compress(String message) {
+		 int length = message.length();
 		 int count=1;
-	     StringBuilder sb = new StringBuilder(); 
+	     StringBuilder compressedMessage = new StringBuilder(); 
 
 		   
 
 		    for(int i=0; i<length; i++){
 		        
 		    	if(i== length - 1){         
-		            sb.append(str.charAt(i)+""+((count == 1) ? "" : count) );
+		            compressedMessage.append(message.charAt(i)+""+((count == 1) ? "" : count) );
 		            break;
 		        }
 
-		        if(str.charAt(i)==str.charAt(i+1)){   
+		        if(message.charAt(i)==message.charAt(i+1)){   
 		            count++;
 		        }
 		        else{                           
-		            sb.append(str.charAt(i)+""+((count == 1) ? "" : count) );
+		            compressedMessage.append(message.charAt(i)+""+((count == 1) ? "" : count) );
 		            count=1;
 		        }
 		   
 		    }
-		return sb.toString();
+		return compressedMessage.toString();
 	}
 	
 	/**
@@ -72,17 +76,17 @@ public class Test {
 	 * @return count pair
 	 */
 	public static int countPair(List<Integer> listNumbers, int k ) {
-	       Set<Integer> collections = new HashSet<>();
+	       Set<Integer> collectionsNumbers = new HashSet<>();
 	        
 	       for(int i = 0;i<listNumbers.size();i++) {
 	        	for(int j = i+1;j<listNumbers.size();j++) {
 	        		if(listNumbers.get(i)!= null && Math.abs(listNumbers.get(i)-listNumbers.get(j)) == k) {
-	        			collections.add(listNumbers.get(i));
+	        			collectionsNumbers.add(listNumbers.get(i));
 	        			break;
 	        		}
 	        	}
 	        }
-		return collections.size();
+		return collectionsNumbers.size();
 	}
 	
 	/**
@@ -90,19 +94,20 @@ public class Test {
 	 * @param list number of type integer 
 	 * @return count member non unique in list
 	 */
-	public static int countNonUniuque(List<Integer> list) {
-	       Set<Integer> collections = new HashSet<>();
-
-	       for(int i = 0;i<list.size();i++) {
-	        	for(int j = i+1;j<list.size();j++) {
-	        		if(list.get(i).equals(list.get(j))) {
-	        			collections.add(list.get(i));
+	public static int countNonUniuque(List<Integer> listNumbers) {
+	       int countNonUniuque = 0 ;
+	       Set<Integer> collectionsNumbers = new HashSet<>();
+	       int sizeList = listNumbers.size();
+	       for(int i = 0;i<sizeList;i++) {
+	        	for(int j = i+1;j<sizeList;j++) {
+	        		if(listNumbers.get(i).equals(listNumbers.get(j))) {
+	        			collectionsNumbers.add(listNumbers.get(i));
 	        			break;
 	        		}
 	        	}
 	        }
-	       
-		return collections.size();
+	       	countNonUniuque = collectionsNumbers.size();
+		return  countNonUniuque;
 	}
 
 }
